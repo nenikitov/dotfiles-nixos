@@ -1,0 +1,130 @@
+# This file was taken and heavily modified from [here](https://gist.githubusercontent.com/bmaupin/d64368e78cd359d309685fecbe2baf23/raw/e933a0fc2e727aa640f4a1cb1f699622876940fc/en_SE)
+
+LC_IDENTIFICATION
+title    "English locale for world-wide standards (mostly copying en_US)"
+language "English"
+
+category "i18n:2012"; LC_IDENTIFICATION
+category "i18n:2012"; LC_CTYPE
+category "i18n:2012"; LC_COLLATE
+category "i18n:2012"; LC_TIME
+category "i18n:2012"; LC_NUMERIC
+category "i18n:2012"; LC_MONETARY
+category "i18n:2012"; LC_PAPER
+category "i18n:2012"; LC_MEASUREMENT
+category "i18n:2012"; LC_MESSAGES
+category "i18n:2012"; LC_NAME
+category "i18n:2012"; LC_ADDRESS
+category "i18n:2012"; LC_TELEPHONE
+END LC_IDENTIFICATION
+
+LC_CTYPE
+copy "en_US"
+END LC_CTYPE
+
+LC_COLLATE
+copy "en_US"
+END LC_COLLATE
+
+LC_TIME
+mon           "January"; \
+              "February"; \
+              "March"; \
+              "April"; \
+              "May"; \
+              "June"; \
+              "July"; \
+              "August"; \
+              "September"; \
+              "October"; \
+              "November"; \
+              "December"
+abmon         "Jan"; \
+              "Feb"; \
+              "Mar"; \
+              "Apr"; \
+              "May"; \
+              "Jun"; \
+              "Jul"; \
+              "Aug"; \
+              "Sep"; \
+              "Oct"; \
+              "Nov"; \
+              "Dec"
+day           "Sunday"; \
+              "Monday"; \
+              "Tuesday"; \
+              "Wednesday"; \
+              "Thursday"; \
+              "Friday"; \
+              "Saturday"
+abday         "Sun"; \
+              "Mon"; \
+              "Tue"; \
+              "Wed"; \
+              "Thu"; \
+              "Fri"; \
+              "Sat"
+week          7; 19971130; 1
+first_weekday 2
+first_workday 2
+d_t_fmt       "%a %d %b %Y %H:%M:%S"
+date_fmt       "%Y-%m-%dT%H:%M:%S%:z"
+d_fmt         "%F"
+t_fmt         "%H:%M:%S"
+t_fmt_ampm    ""
+am_pm         ""; ""
+END LC_TIME
+
+LC_NUMERIC
+decimal_point "."
+thousands_sep ","
+grouping      3
+END LC_NUMERIC
+
+LC_MONETARY
+currency_symbol    "$"
+int_curr_symbol    "USD "
+mon_decimal_point  "."
+mon_thousands_sep  " "
+mon_grouping       3
+positive_sign      ""
+negative_sign      "-"
+frac_digits        2
+int_frac_digits    2
+p_cs_precedes      1
+p_sep_by_space     0
+n_cs_precedes      1
+n_sep_by_space     0
+p_sign_posn        1
+n_sign_posn        1
+int_p_sep_by_space 1
+int_n_sep_by_space 1
+END LC_MONETARY
+
+LC_PAPER
+height 297
+width 210
+END LC_PAPER
+
+LC_MEASUREMENT
+measurement 1
+END LC_MEASUREMENT
+
+LC_MESSAGES
+copy "en_US"
+END LC_MESSAGES
+
+LC_NAME
+copy "en_US"
+END LC_NAME
+
+LC_ADDRESS
+copy "en_US"
+END LC_ADDRESS
+
+LC_TELEPHONE
+copy "en_US"
+END LC_TELEPHONE
+
+# vim: ft=fdcc
