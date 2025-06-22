@@ -7,7 +7,7 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;
-    hosts = ["nenikitov-pc-nix"];
+    hosts = ["nenikitov-pc-nix" "nenikitov-laptop-nix"];
     customNamespace = "_ne";
     mkComputer = hostName:
       lib.nixosSystem {

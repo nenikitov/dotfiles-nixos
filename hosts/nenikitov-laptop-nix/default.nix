@@ -31,7 +31,7 @@
     efi.canTouchEfiVariables = true;
   };
 
-  fileSystems."${config.users.users.nenikitov.home}/Shared" = {
+  fileSystems."~nenikitov/Shared" = {
     device = "/dev/nvme0n1p5";
     options = ["rw" "uid=1000"];
   };

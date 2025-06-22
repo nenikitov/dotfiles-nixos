@@ -34,7 +34,7 @@ mkModule config {
 
       "${customNamespace}" = {
         settings = {
-          garbageCollection = true;
+          garbageCollection.enable = true;
           locale.enable = true;
           numlock.enable = true;
         };

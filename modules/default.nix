@@ -3,6 +3,6 @@
     ./hardware
     ./profiles
     ./settings
-    ./settings
+    ./users
   ];
 }
