@@ -1,4 +1,9 @@
-{customNamespace, ...}: {
+{
+  config,
+  pkgs,
+  customNamespace,
+  ...
+}: {
   imports = [
     ./hardware.nix
   ];
@@ -16,7 +21,6 @@
     systemd-boot = {
       enable = true;
       editor = false;
-      consoleMode = "max";
       extraEntries = {
         "grub.conf" = ''
           title GRUB
@@ -27,6 +31,14 @@
     efi.canTouchEfiVariables = true;
   };
 
+  fileSystems."${config.users.users.nenikitov.home}/Shared" = {
+    device = "/dev/nvme0n1p5";
+    options = ["rw" "uid=1000"];
+  };
+
+  users.users.nenikitov.shell = pkgs.zsh;
+  programs.zsh.enable = true;
+
   services.displayManager.ly = {
     enable = true;
     settings = {
@@ -36,9 +48,7 @@
   };
   services.desktopManager.plasma6.enable = true;
 
-  programs.firefox.enable = true;
-
   # Do not change
   # Corresponds to the first installed NixOS version
-  system.stateVersion = "25.05";
+  system.stateVersion = "24.05";
 }

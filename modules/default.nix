@@ -1,6 +1,8 @@
 {
   imports = [
-    ./settings
     ./hardware
+    ./profiles
+    ./settings
+    ./settings
   ];
 }

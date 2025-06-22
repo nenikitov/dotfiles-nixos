@@ -14,11 +14,12 @@ https://github.com/Nebucatnetzer/nixos/tree/master
   ...
 }:
 mkModule config {
-  path = ["<MODULE>"];
+  path = ["<PATH>" "<TO>" "<MODULE>"];
   options = {
-    enable = lib.mkEnableOption "<DESCRIPTION>" // { default = <DEFAULT>; };
+    enable = lib.mkEnableOption "<DESCRIPTION>";
   };
-  config = configLocal: lib.mkIf configLocal.enable {
-  };
+  config = configLocal:
+    lib.mkIf configLocal.enable {
+    };
 }
 ```

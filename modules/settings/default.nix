@@ -1,6 +1,7 @@
 {
   imports = [
-    ./numlock
+    ./garbage-collection
     ./locale
+    ./numlock
   ];
 }
