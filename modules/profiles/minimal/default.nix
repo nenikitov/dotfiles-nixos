@@ -38,6 +38,10 @@ mkModule config {
           locale.enable = true;
           numlock.enable = true;
         };
+        programs = {
+          ly.enable = true;
+          systemdBoot.enable = true;
+        };
         hardware = {
           network.enable = true;
           nuphy.enable = true;
@@ -55,6 +59,7 @@ mkModule config {
 
       nixpkgs.config.allowUnfree = true;
       environment.systemPackages = with pkgs; [
+        file
         git
         tree
         vim

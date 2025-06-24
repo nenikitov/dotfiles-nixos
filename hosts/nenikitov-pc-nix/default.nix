@@ -1,10 +1,22 @@
-{customNamespace, ...}: {
+{
+  customNamespace,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware.nix
   ];
 
+  boot.loader.efi.canTouchEfiVariables = true;
+
   "${customNamespace}" = {
     profiles.desktop.enable = true;
+    programs.systemdBoot.extraEntries = {
+      "grub.conf" = ''
+        title GRUB
+        efi /EFI/GRUB/grubx64.efi
+      '';
+    };
   };
 
   time.timeZone = "America/Toronto";
@@ -12,31 +24,12 @@
     layout = "us";
   };
 
-  boot.loader = {
-    systemd-boot = {
-      enable = true;
-      editor = false;
-      consoleMode = "max";
-      extraEntries = {
-        "grub.conf" = ''
-          title GRUB
-          efi /EFI/GRUB/grubx64.efi
-        '';
-      };
-    };
-    efi.canTouchEfiVariables = true;
-  };
-
-  services.displayManager.ly = {
-    enable = true;
-    settings = {
-      clear_password = true;
-      clock = "%Y-%m-%d, %H:%M:%S";
-    };
-  };
   services.desktopManager.plasma6.enable = true;
 
   programs.firefox.enable = true;
+  environment.systemPackages = with pkgs; [
+    neovim
+  ];
 
   # Do not change
   # Corresponds to the first installed NixOS version

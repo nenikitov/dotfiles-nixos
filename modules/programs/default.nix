@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./ly
+    ./systemd-boot
+  ];
+}
