@@ -17,6 +17,10 @@ mkModule config {
         bluetooth.enable = true;
         printing.enable = true;
       };
+
+      programs = {
+        plymouth.enable = true;
+      };
     };
 
     services.xserver.enable = true;
