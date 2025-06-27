@@ -1,3 +1,5 @@
+
+
 {
   description = "Main system configuration";
 
@@ -15,19 +17,25 @@
           inherit inputs hostName customNamespace;
           mkModule = configGlobal: {
             path,
+            description,
             options ? {},
             config ? configLocal: {},
           }:
+            # Options
             (lib.setAttrByPath
               (["options" customNamespace] ++ path)
-              options)
-            // {
-              config =
-                config
-                (lib.attrByPath
+              (options // { enable = lib.mkEnableOption description; }))
+            //
+            # Config
+            {
+              config = let
+                configLocal =
+                  lib.attrByPath
                   ([customNamespace] ++ path)
                   {}
-                  configGlobal);
+                  configGlobal;
+              in
+                lib.mkIf configLocal.enable (config configLocal);
             };
         };
         modules = [

@@ -7,17 +7,16 @@
 }:
 mkModule config {
   path = ["programs" "systemdBoot"];
+  description = "systemd-boot bootloader";
   options = {
-    enable = lib.mkEnableOption "systemd-boot bootloader";
     extraEntries = options.boot.loader.systemd-boot.extraEntries;
   };
-  config = configLocal:
-    lib.mkIf configLocal.enable {
-      boot.loader.systemd-boot = {
-        enable = true;
-        editor = false;
-        consoleMode = "max";
-        extraEntries = configLocal.extraEntries;
-      };
+  config = configLocal: {
+    boot.loader.systemd-boot = {
+      enable = true;
+      editor = false;
+      consoleMode = "max";
+      extraEntries = configLocal.extraEntries;
     };
+  };
 }

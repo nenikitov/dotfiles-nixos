@@ -6,11 +6,8 @@
 }:
 mkModule config {
   path = ["hardware" "printing"];
-  options = {
-    enable = lib.mkEnableOption "support for printing (via cups)";
+  description = "support for printing (via cups)";
+  config = configLocal: {
+    services.printing.enable = true;
   };
-  config = configLocal:
-    lib.mkIf configLocal.enable {
-      services.printing.enable = true;
-    };
 }

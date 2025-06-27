@@ -6,11 +6,8 @@
 }:
 mkModule config {
   path = ["hardware" "network"];
-  options = {
-    enable = lib.mkEnableOption "support for network (via NetworkManager)";
+  description = "support for network (via NetworkManager)";
+  config = configLocal: {
+    networking.networkmanager.enable = true;
   };
-  config = configLocal:
-    lib.mkIf configLocal.enable {
-      networking.networkmanager.enable = true;
-    };
 }

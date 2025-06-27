@@ -15,11 +15,12 @@ https://github.com/Nebucatnetzer/nixos/tree/master
 }:
 mkModule config {
   path = ["<PATH>" "<TO>" "<MODULE>"];
+  # Define only additional options here
+  # No need to create `enable` option - it is done automatically
   options = {
-    enable = lib.mkEnableOption "<DESCRIPTION>";
   };
-  config = configLocal:
-    lib.mkIf configLocal.enable {
-    };
+  # No need to check if the option is enabled and `lib.mkIf` - it is done automatically
+  config = configLocal: {
+  };
 }
 ```
