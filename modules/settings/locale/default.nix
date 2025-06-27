@@ -10,7 +10,7 @@ mkModule config {
   description = "standardized and opinionated locale";
   config = configLocal: {
     i18n = {
-      # TODO(neikitov): Look into using en_DK or en_SE
+      # TODO(neikitov): Look into using `en_DK` or `en_SE` instead of compiling a custom locale
       defaultLocale = "en_US.UTF-8";
       extraLocaleSettings = {
         LC_ALL = "en.UTF-8";

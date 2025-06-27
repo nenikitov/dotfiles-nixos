@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   customNamespace,
   ...
@@ -7,6 +6,10 @@
   imports = [
     ./hardware.nix
   ];
+
+  # Do not change!
+  # Corresponds to the first installed NixOS version
+  system.stateVersion = "24.05";
 
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -34,8 +37,4 @@
   programs.zsh.enable = true;
 
   services.desktopManager.plasma6.enable = true;
-
-  # Do not change
-  # Corresponds to the first installed NixOS version
-  system.stateVersion = "24.05";
 }

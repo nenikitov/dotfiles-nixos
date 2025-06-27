@@ -7,6 +7,10 @@
     ./hardware.nix
   ];
 
+  # Do not change!
+  # Corresponds to the first installed NixOS version
+  system.stateVersion = "25.05";
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   "${customNamespace}" = {
@@ -30,8 +34,4 @@
   environment.systemPackages = with pkgs; [
     neovim
   ];
-
-  # Do not change
-  # Corresponds to the first installed NixOS version
-  system.stateVersion = "25.05";
 }
