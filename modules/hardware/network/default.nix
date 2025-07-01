@@ -1,7 +1,4 @@
-{
-  mkModule,
-  ...
-}:
+{mkModule, ...}:
 mkModule {
   path = ["hardware" "network"];
   description = "support for network (via NetworkManager)";

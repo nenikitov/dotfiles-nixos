@@ -1,8 +1,4 @@
-{
-  lib,
-  mkModule,
-  ...
-}:
+{mkModule, ...}:
 mkModule {
   path = ["users" "nenikitov"];
   description = "creation of a `nenikitov` user profile";

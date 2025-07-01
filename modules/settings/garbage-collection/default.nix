@@ -1,8 +1,4 @@
-{
-  lib,
-  mkModule,
-  ...
-}:
+{mkModule, ...}:
 mkModule {
   path = ["settings" "garbageCollection"];
   description = "automatic garbage collection";

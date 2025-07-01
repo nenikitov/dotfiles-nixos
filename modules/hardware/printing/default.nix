@@ -1,7 +1,4 @@
-{
-  mkModule,
-  ...
-}:
+{mkModule, ...}:
 mkModule {
   path = ["hardware" "printing"];
   description = "support for printing (via cups)";

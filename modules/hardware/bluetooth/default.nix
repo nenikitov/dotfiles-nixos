@@ -1,7 +1,4 @@
-{
-  mkModule,
-  ...
-}:
+{mkModule, ...}:
 mkModule {
   path = ["hardware" "bluetooth"];
   description = "support for bluetooth (via bluez)";

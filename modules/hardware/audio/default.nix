@@ -1,7 +1,4 @@
-{
-  mkModule,
-  ...
-}:
+{mkModule, ...}:
 mkModule {
   path = ["hardware" "audio"];
   description = "support for audio (via pipewire / wireplumber)";

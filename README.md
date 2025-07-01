@@ -17,20 +17,20 @@ It can be found in [here](https://github.com/nenikitov/dotfiles), for now in the
 ### Module
 
 ```nix
-{
-  config,
-  lib,
-  mkModule,
-  ...
-}:
-mkModule config {
-  path = ["<PATH>" "<TO>" "<MODULE>"];
-  ### Define only additional options here
-  ### No need to create `enable` option - it is done automatically
+{mkModule, ...}:
+mkModule {
+  path = ["<PATH>" "<TO>" "<MODULE>"]];
+  description = "<DESCRIPTION>";
   options = {
+    ### No need for `enable`
+    ### Only additional options here
+    ### Skip entirely if no additional options needed
   };
-  ### No need to check if the option is enabled and `lib.mkIf` - it is done automatically
-  config = configLocal: {
+  config = {
+    ### No need for check for `enable`
+    ### Always try to use set
+    ### If access to `config` is needed, make this a function
+    ### Prefer to use `{configGlobal, ...}:` over `config` argument
   };
 }
 ```
@@ -55,6 +55,7 @@ mkModule config {
   boot.loader.efi.canTouchEfiVariables = true;
 
   ### Select the best profile to use for the machine
+  ### Can use multiple profiles
   "${customNamespace}" = {
     profiles.desktop.enable = true;
   };

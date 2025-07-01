@@ -1,7 +1,4 @@
-{
-  mkModule,
-  ...
-}:
+{mkModule, ...}:
 mkModule {
   path = ["programs" "ly"];
   description = "Ly display manager";
