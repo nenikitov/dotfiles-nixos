@@ -1,13 +1,11 @@
 {
-  config,
-  lib,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["hardware" "printing"];
   description = "support for printing (via cups)";
-  config = configLocal: {
+  config = {
     services.printing.enable = true;
   };
 }

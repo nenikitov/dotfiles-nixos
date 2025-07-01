@@ -1,13 +1,15 @@
-
-
 {
   description = "Main system configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    moduleUtils = {
+      url = "github:nenikitov/nix-module-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {self, nixpkgs, moduleUtils, ...} @ inputs: let
     lib = nixpkgs.lib;
     hosts = ["nenikitov-pc-nix" "nenikitov-laptop-nix"];
     customNamespace = "_ne";
@@ -15,31 +17,9 @@
       lib.nixosSystem {
         specialArgs = {
           inherit inputs hostName customNamespace;
-          mkModule = configGlobal: {
-            path,
-            description,
-            options ? {},
-            config ? configLocal: {},
-          }:
-            # Options
-            (lib.setAttrByPath
-              (["options" customNamespace] ++ path)
-              (options // { enable = lib.mkEnableOption description; }))
-            //
-            # Config
-            {
-              config = let
-                configLocal =
-                  lib.attrByPath
-                  ([customNamespace] ++ path)
-                  {}
-                  configGlobal;
-              in
-                lib.mkIf configLocal.enable (config configLocal);
-            };
         };
         modules = [
-          ./modules
+          (self.nixosModules.default { namespace = customNamespace; })
           "${inputs.self}/hosts/${hostName}"
         ];
       };
@@ -54,5 +34,10 @@
         }))
         builtins.listToAttrs
       ];
+    nixosModules.default = { namespace ? "_ne" }: moduleUtils.lib.overlayModule {
+      overlayArgs = args: args // {
+        mkModule = moduleUtils.lib.mkModule namespace args.config;
+      };
+    } ./modules;
   };
 }

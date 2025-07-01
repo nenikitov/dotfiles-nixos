@@ -1,13 +1,11 @@
 {
-  config,
-  lib,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["hardware" "bluetooth"];
   description = "support for bluetooth (via bluez)";
-  config = configLocal: {
+  config = {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

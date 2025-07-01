@@ -1,13 +1,12 @@
 {
-  config,
   lib,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["settings" "garbageCollection"];
   description = "automatic garbage collection";
-  config = configLocal: {
+  config = {
     nix = {
       settings.auto-optimise-store = true;
       optimise = {

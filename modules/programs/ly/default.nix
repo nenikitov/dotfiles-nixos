@@ -1,13 +1,11 @@
 {
-  config,
-  lib,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["programs" "ly"];
   description = "Ly display manager";
-  config = configLocal: {
+  config = {
     services.displayManager.ly = {
       enable = true;
       settings = {

@@ -1,14 +1,12 @@
 {
-  config,
   customNamespace,
-  lib,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["profiles" "desktop"];
   description = "a graphical, desktop profile. Enables `minimal` profile too";
-  config = configLocal: {
+  config = {
     "${customNamespace}" = {
       profiles.minimal.enable = true;
 

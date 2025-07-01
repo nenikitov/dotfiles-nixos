@@ -1,14 +1,13 @@
 {
-  config,
   lib,
   pkgs,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["settings" "numlock"];
   description = "num lock at startup";
-  config = configLocal: {
+  config = {
     # Early system boot - for disk decryption and TTY
     boot.initrd = {
       extraUtilsCommands =

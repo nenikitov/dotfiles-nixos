@@ -1,14 +1,12 @@
 {
-  config,
-  lib,
   mkModule,
   pkgs,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["programs" "plymouth"];
   description = "Plymouth splash screen";
-  config = configLocal: {
+  config = {
     boot.plymouth = {
       enable = true;
       # TODO(nenikitov): Make my own theme?

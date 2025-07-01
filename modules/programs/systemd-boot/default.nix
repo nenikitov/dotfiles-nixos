@@ -5,18 +5,18 @@
   options,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["programs" "systemdBoot"];
   description = "systemd-boot bootloader";
   options = {
     extraEntries = options.boot.loader.systemd-boot.extraEntries;
   };
-  config = configLocal: {
+  config = {configModule, ...}: {
     boot.loader.systemd-boot = {
       enable = true;
       editor = false;
       consoleMode = "max";
-      extraEntries = configLocal.extraEntries;
+      extraEntries = configModule.extraEntries;
     };
   };
 }

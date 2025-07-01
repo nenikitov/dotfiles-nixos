@@ -1,5 +1,4 @@
 {
-  config,
   customNamespace,
   hostName,
   lib,
@@ -7,10 +6,10 @@
   pkgs,
   ...
 } @ inputs:
-mkModule config {
+mkModule {
   path = ["profiles" "minimal"];
   description = "a bare-bones, minimal profile";
-  config = configLocal: {
+  config = {configGlobal, ...}: {
     nix = {
       # Necessary features to enable flakes
       settings.experimental-features = [
@@ -25,7 +24,7 @@ mkModule config {
           (lib.filterAttrs (k: v: lib.isType "flake" v))
           (lib.mapAttrs (k: flake: {inherit flake;}))
         ];
-      nixPath = lib.mapAttrsToList (k: v: "${k}=${v.to.path}") config.nix.registry;
+      nixPath = lib.mapAttrsToList (k: v: "${k}=${v.to.path}") configGlobal.nix.registry;
     };
 
     "${customNamespace}" = {

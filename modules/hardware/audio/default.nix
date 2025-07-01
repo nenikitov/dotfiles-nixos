@@ -1,13 +1,11 @@
 {
-  config,
-  lib,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["hardware" "audio"];
   description = "support for audio (via pipewire / wireplumber)";
-  config = configLocal: {
+  config = {
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

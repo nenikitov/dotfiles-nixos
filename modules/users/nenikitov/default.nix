@@ -1,13 +1,12 @@
 {
-  config,
   lib,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["users" "nenikitov"];
   description = "creation of a `nenikitov` user profile";
-  config = configLocal: {
+  config = {
     users.users.nenikitov = {
       isNormalUser = true;
       description = "Myk";

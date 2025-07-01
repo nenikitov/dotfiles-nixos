@@ -1,13 +1,11 @@
 {
-  config,
-  lib,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["hardware" "network"];
   description = "support for network (via NetworkManager)";
-  config = configLocal: {
+  config = {
     networking.networkmanager.enable = true;
   };
 }

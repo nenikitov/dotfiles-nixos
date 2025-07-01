@@ -1,14 +1,13 @@
 {
-  config,
   lib,
   pkgs,
   mkModule,
   ...
 }:
-mkModule config {
+mkModule {
   path = ["settings" "locale"];
   description = "standardized and opinionated locale";
-  config = configLocal: {
+  config = {configGlobal, ...}: {
     i18n = {
       # TODO(neikitov): Look into using `en_DK` or `en_SE` instead of compiling a custom locale
       defaultLocale = "en_US.UTF-8";
@@ -29,7 +28,7 @@ mkModule config {
       glibcLocales =
         (pkgs.glibcLocales.override {
           allLocales = false;
-          locales = config.i18n.supportedLocales;
+          locales = configGlobal.i18n.supportedLocales;
         })
         .overrideAttrs (_: {
           postUnpack = ''
