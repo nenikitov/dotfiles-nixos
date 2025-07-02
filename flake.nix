@@ -9,7 +9,12 @@
     };
   };
 
-  outputs = {self, nixpkgs, moduleUtils, ...} @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    moduleUtils,
+    ...
+  } @ inputs: let
     lib = nixpkgs.lib;
     hosts = ["nenikitov-pc-nix" "nenikitov-laptop-nix"];
     customNamespace = "_ne";
@@ -19,7 +24,7 @@
           inherit inputs hostName customNamespace;
         };
         modules = [
-          (self.nixosModules.default { namespace = customNamespace; })
+          (self.nixosModules.default {namespace = customNamespace;})
           "${inputs.self}/hosts/${hostName}"
         ];
       };
@@ -34,10 +39,14 @@
         }))
         builtins.listToAttrs
       ];
-    nixosModules.default = { namespace ? "_ne" }: moduleUtils.lib.overlayModule {
-      overlayArgs = args: args // {
-        mkModule = moduleUtils.lib.mkModule namespace args.config;
-      };
-    } ./modules;
+    nixosModules.default = moduleUtils.lib.optionallyConfigureModule ({namespace ? "_ne"}:
+      moduleUtils.lib.overlayModule {
+        overlayArgs = args:
+          args
+          // {
+            mkModule = moduleUtils.lib.mkModule namespace args.config;
+          };
+      }
+      ./modules);
   };
 }

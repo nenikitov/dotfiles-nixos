@@ -4,8 +4,8 @@
   ...
 }:
 mkModule {
-  path = ["profiles" "desktop"];
-  description = "a graphical, desktop profile. Enables `minimal` profile too";
+  path = ["profiles" "graphical"];
+  description = "a graphical profile. Enables `minimal` profile too";
   config = {
     "${customNamespace}" = {
       profiles.minimal.enable = true;
@@ -22,5 +22,9 @@ mkModule {
     };
 
     services.xserver.enable = true;
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 }

@@ -14,7 +14,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   "${customNamespace}" = {
-    profiles.desktop.enable = true;
+    profiles.graphical.enable = true;
+    hardware.nvidia.enable = true;
     programs.systemdBoot.extraEntries = {
       "grub.conf" = ''
         title GRUB

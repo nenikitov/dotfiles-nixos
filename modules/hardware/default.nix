@@ -4,6 +4,7 @@
     ./bluetooth
     ./network
     ./nuphy
+    ./nvidia
     ./printing
   ];
 }

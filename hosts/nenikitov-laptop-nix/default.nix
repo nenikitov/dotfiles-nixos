@@ -19,7 +19,7 @@
   };
 
   "${customNamespace}" = {
-    profiles.desktop.enable = true;
+    profiles.graphical.enable = true;
     programs.systemdBoot.extraEntries = {
       "grub.conf" = ''
         title GRUB

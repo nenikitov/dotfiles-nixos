@@ -1,6 +1,6 @@
 {
   imports = [
-    ./desktop
+    ./graphical
     ./minimal
   ];
 }
