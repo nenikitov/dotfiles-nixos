@@ -1,5 +1,5 @@
 {
-  description = "Main system configuration";
+  description = "nenikitov's main system configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -25,7 +25,7 @@
         };
         modules = [
           (self.nixosModules.default {namespace = customNamespace;})
-          "${inputs.self}/hosts/${hostName}"
+          "${self}/hosts/${hostName}"
         ];
       };
   in {
