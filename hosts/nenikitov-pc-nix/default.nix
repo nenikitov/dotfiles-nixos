@@ -30,9 +30,4 @@
   };
 
   services.desktopManager.plasma6.enable = true;
-
-  programs.firefox.enable = true;
-  environment.systemPackages = with pkgs; [
-    neovim
-  ];
 }
