@@ -1,5 +1,5 @@
-{mkModule, ...}:
-mkModule {
+{libModule, ...}:
+libModule.mkEnableModule {
   path = ["hardware" "bluetooth"];
   description = "support for bluetooth (via bluez)";
   config = {

@@ -1,9 +1,6 @@
-{
-  imports = [
-    ./hardware
-    ./profiles
-    ./programs
-    ./settings
-    ./users
-  ];
+{libModule, ...}: {
+  imports = libModule.scanDir {
+    dir = ./.;
+    exclude = ./default.nix;
+  };
 }

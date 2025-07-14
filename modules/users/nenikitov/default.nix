@@ -1,5 +1,5 @@
-{mkModule, ...}:
-mkModule {
+{libModule, ...}:
+libModule.mkEnableModule {
   path = ["users" "nenikitov"];
   description = "creation of a `nenikitov` user profile";
   config = {

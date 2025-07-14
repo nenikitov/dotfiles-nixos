@@ -1,5 +1,5 @@
-{mkModule, ...}:
-mkModule {
+{libModule, ...}:
+libModule.mkEnableModule {
   path = ["settings" "garbageCollection"];
   description = "automatic garbage collection";
   config = {
@@ -7,12 +7,12 @@ mkModule {
       settings.auto-optimise-store = true;
       optimise = {
         automatic = true;
-        dates = "weekly";
+        dates = "daily";
       };
 
       gc = {
         automatic = true;
-        dates = "weekly";
+        dates = "daily";
         options = "--delete-older-than 7d";
       };
     };

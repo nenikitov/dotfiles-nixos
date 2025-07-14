@@ -1,5 +1,5 @@
-{mkModule, ...}:
-mkModule {
+{libModule, ...}:
+libModule.mkEnableModule {
   path = ["hardware" "network"];
   description = "support for network (via NetworkManager)";
   config = {

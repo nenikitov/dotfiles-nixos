@@ -1,11 +1,11 @@
 {
   config,
   lib,
-  mkModule,
+  libModule,
   options,
   ...
 }:
-mkModule {
+libModule.mkEnableModule {
   path = ["programs" "systemdBoot"];
   description = "systemd-boot bootloader";
   options = {

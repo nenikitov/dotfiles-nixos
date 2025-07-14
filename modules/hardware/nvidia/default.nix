@@ -1,5 +1,5 @@
-{mkModule, ...}:
-mkModule {
+{libModule, ...}:
+libModule.mkEnableModule {
   path = ["hardware" "nvidia"];
   description = "support for proprietary NVIDIA GPUS (via proprietary drivers)";
   config = {

@@ -1,9 +1,9 @@
 {
-  mkModule,
+  libModule,
   pkgs,
   ...
 }:
-mkModule {
+libModule.mkEnableModule {
   path = ["programs" "plymouth"];
   description = "Plymouth splash screen";
   config = {

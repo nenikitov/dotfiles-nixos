@@ -44,7 +44,9 @@
         overlayArgs = args:
           args
           // {
-            mkModule = moduleUtils.lib.mkModule namespace args.config;
+            libModule = moduleUtils.lib.libModule {
+              inherit namespace args;
+            };
           };
       }
       ./modules);

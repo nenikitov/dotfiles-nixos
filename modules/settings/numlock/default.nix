@@ -1,9 +1,9 @@
 {
   pkgs,
-  mkModule,
+  libModule,
   ...
 }:
-mkModule {
+libModule.mkEnableModule {
   path = ["settings" "numlock"];
   description = "num lock at startup";
   config = {

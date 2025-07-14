@@ -1,10 +1,10 @@
 {
   lib,
   pkgs,
-  mkModule,
+  libModule,
   ...
 }:
-mkModule {
+libModule.mkEnableModule {
   path = ["settings" "locale"];
   description = "standardized and opinionated locale";
   config = {configGlobal, ...}: {

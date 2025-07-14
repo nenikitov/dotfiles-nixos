@@ -1,7 +1,6 @@
-{
-  imports = [
-    ./garbage-collection
-    ./locale
-    ./numlock
-  ];
+{libModule, ...}: {
+  imports = libModule.scanDir {
+    dir = ./.;
+    exclude = ./default.nix;
+  };
 }

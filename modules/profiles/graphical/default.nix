@@ -1,9 +1,9 @@
 {
   customNamespace,
-  mkModule,
+  libModule,
   ...
 }:
-mkModule {
+libModule.mkEnableModule {
   path = ["profiles" "graphical"];
   description = "a graphical profile. Enables `minimal` profile too";
   config = {

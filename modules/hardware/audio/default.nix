@@ -1,5 +1,5 @@
-{mkModule, ...}:
-mkModule {
+{libModule, ...}:
+libModule.mkEnableModule {
   path = ["hardware" "audio"];
   description = "support for audio (via pipewire / wireplumber)";
   config = {

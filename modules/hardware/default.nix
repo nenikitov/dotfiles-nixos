@@ -1,10 +1,6 @@
-{
-  imports = [
-    ./audio
-    ./bluetooth
-    ./network
-    ./nuphy
-    ./nvidia
-    ./printing
-  ];
+{libModule, ...}: {
+  imports = libModule.scanDir {
+    dir = ./.;
+    exclude = ./default.nix;
+  };
 }

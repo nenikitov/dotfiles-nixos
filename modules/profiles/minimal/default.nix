@@ -2,11 +2,11 @@
   customNamespace,
   hostName,
   lib,
-  mkModule,
+  libModule,
   pkgs,
   ...
 } @ inputs:
-mkModule {
+libModule.mkEnableModule {
   path = ["profiles" "minimal"];
   description = "a bare-bones, minimal profile";
   config = {configGlobal, ...}: {

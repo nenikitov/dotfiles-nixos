@@ -1,5 +1,5 @@
-{mkModule, ...}:
-mkModule {
+{libModule, ...}:
+libModule.mkEnableModule {
   path = ["hardware" "nuphy"];
   description = "fix for Nuphy keyboards to enable `F<NUM>` keys";
   config = {

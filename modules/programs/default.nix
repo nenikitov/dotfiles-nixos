@@ -1,7 +1,6 @@
-{
-  imports = [
-    ./ly
-    ./plymouth
-    ./systemd-boot
-  ];
+{libModule, ...}: {
+  imports = libModule.scanDir {
+    dir = ./.;
+    exclude = ./default.nix;
+  };
 }
