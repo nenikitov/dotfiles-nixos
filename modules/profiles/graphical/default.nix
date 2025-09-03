@@ -18,6 +18,7 @@ libModule.mkEnableModule {
 
       programs = {
         plymouth.enable = true;
+        niri.enable = true;
       };
     };
 
