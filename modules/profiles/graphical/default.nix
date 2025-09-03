@@ -1,13 +1,12 @@
 {
-  customNamespace,
   libModule,
   ...
 }:
 libModule.mkEnableModule {
   path = ["profiles" "graphical"];
   description = "a graphical profile. Enables `minimal` profile too";
-  config = {
-    "${customNamespace}" = {
+  config = {namespace, ...}: {
+    "${namespace}" = {
       profiles.minimal.enable = true;
 
       hardware = {
@@ -18,6 +17,7 @@ libModule.mkEnableModule {
 
       programs = {
         plymouth.enable = true;
+        niri.enable = true;
       };
     };
 
