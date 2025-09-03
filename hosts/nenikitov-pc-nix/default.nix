@@ -28,6 +28,4 @@
   services.xserver.xkb = {
     layout = "us";
   };
-
-  services.desktopManager.plasma6.enable = true;
 }

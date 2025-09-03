@@ -21,36 +21,29 @@
     hostsDir = "${self}/hosts";
     hosts = lib.pipe hostsDir [
       builtins.readDir
-      (lib.mapAttrsToList (p: t: let
-          module = "${hostsDir}/${p}";
-        in if t == "directory" then {
-          inherit module;
-          hostName = "${p}";
-        }
-        else if t == "regular" && (lib.hasSuffix ".nix" p) then {
-          inherit module;
-          hostName = lib.removeSuffix ".nix" p;
-        }
-        else null
+      (lib.concatMapAttrs (p: t:
+        if t == "directory" then { "${p}" = p; }
+        else if t == "regular" && lib.hasSuffix ".nix" p then { "${lib.removeSuffix ".nix" p}" = p; }
+        else {}
       ))
-      (builtins.filter (e: !builtins.isNull e))
+      (builtins.mapAttrs (h: p: {
+        module = "${hostsDir}/${p}";
+        hostName = h;
+      }))
     ];
-    mkComputerKey = {hostName, ...}: hostName;
-    mkComputer = {hostName, module}:
+
+    mkComputer = {module, hostName}:
       lib.nixosSystem {
-        specialArgs = {
-          inherit inputs hostName customNamespace;
-        };
         modules = [
           (self.nixosModules.default {namespace = customNamespace;})
           module
         ];
+        specialArgs = {
+          inherit inputs hostName customNamespace;
+        };
       };
   in {
-    nixosConfigurations = lib.pipe hosts [
-      (builtins.map (host: lib.nameValuePair (mkComputerKey host) (mkComputer host)))
-      builtins.listToAttrs
-    ];
+    nixosConfigurations = builtins.mapAttrs (_: mkComputer) hosts;
     nixosModules.default = libModule.optionallyConfigureModule ({namespace ? "_ne"}:
       libModule.overlayModule {
         overlayArgs = args:

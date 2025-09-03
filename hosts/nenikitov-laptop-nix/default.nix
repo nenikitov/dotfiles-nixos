@@ -35,6 +35,4 @@
 
   users.users.nenikitov.shell = pkgs.zsh;
   programs.zsh.enable = true;
-
-  services.desktopManager.plasma6.enable = true;
 }
