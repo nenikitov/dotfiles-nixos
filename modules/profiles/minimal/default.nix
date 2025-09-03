@@ -1,5 +1,4 @@
 {
-  customNamespace,
   hostName,
   lib,
   libModule,
@@ -9,7 +8,7 @@
 libModule.mkEnableModule {
   path = ["profiles" "minimal"];
   description = "a bare-bones, minimal profile";
-  config = {configGlobal, ...}: {
+  config = {namespace, configGlobal, ...}: {
     nix = {
       # Necessary features to enable flakes
       settings.experimental-features = [
@@ -27,7 +26,7 @@ libModule.mkEnableModule {
       nixPath = lib.mapAttrsToList (k: v: "${k}=${v.to.path}") configGlobal.nix.registry;
     };
 
-    "${customNamespace}" = {
+    "${namespace}" = {
       settings = {
         garbageCollection.enable = true;
         locale.enable = true;

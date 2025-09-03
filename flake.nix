@@ -11,40 +11,52 @@
 
   outputs = {
     self,
-    nixpkgs,
-    moduleUtils,
     ...
   } @ inputs: let
-    lib = nixpkgs.lib;
-    hosts = ["nenikitov-pc-nix" "nenikitov-laptop-nix"];
+    lib = inputs.nixpkgs.lib;
+    libModule = inputs.moduleUtils.lib;
+
     customNamespace = "_ne";
-    mkComputer = hostName:
+
+    hostsDir = "${self}/hosts";
+    hosts = lib.pipe hostsDir [
+      builtins.readDir
+      (lib.mapAttrsToList (p: t: let
+          module = "${hostsDir}/${p}";
+        in if t == "directory" then {
+          inherit module;
+          hostName = "${p}";
+        }
+        else if t == "regular" && (lib.hasSuffix ".nix" p) then {
+          inherit module;
+          hostName = lib.removeSuffix ".nix" p;
+        }
+        else null
+      ))
+      (builtins.filter (e: !builtins.isNull e))
+    ];
+    mkComputerKey = {hostName, ...}: hostName;
+    mkComputer = {hostName, module}:
       lib.nixosSystem {
         specialArgs = {
           inherit inputs hostName customNamespace;
         };
         modules = [
           (self.nixosModules.default {namespace = customNamespace;})
-          "${self}/hosts/${hostName}"
+          module
         ];
       };
   in {
-    nixosConfigurations =
-      lib.pipe
-      hosts
-      [
-        (builtins.map (host: {
-          name = host;
-          value = mkComputer host;
-        }))
-        builtins.listToAttrs
-      ];
-    nixosModules.default = moduleUtils.lib.optionallyConfigureModule ({namespace ? "_ne"}:
-      moduleUtils.lib.overlayModule {
+    nixosConfigurations = lib.pipe hosts [
+      (builtins.map (host: lib.nameValuePair (mkComputerKey host) (mkComputer host)))
+      builtins.listToAttrs
+    ];
+    nixosModules.default = libModule.optionallyConfigureModule ({namespace ? "_ne"}:
+      libModule.overlayModule {
         overlayArgs = args:
           args
           // {
-            libModule = moduleUtils.lib.libModule {
+            libModule = libModule.libModule {
               inherit namespace args;
             };
           };
