@@ -9,10 +9,7 @@
     };
   };
 
-  outputs = {
-    self,
-    ...
-  } @ inputs: let
+  outputs = {self, ...} @ inputs: let
     lib = inputs.nixpkgs.lib;
     libModule = inputs.moduleUtils.lib;
 
@@ -21,10 +18,13 @@
     hostsDir = "${self}/hosts";
     hosts = lib.pipe hostsDir [
       builtins.readDir
-      (lib.concatMapAttrs (p: t:
-        if t == "directory" then { "${p}" = p; }
-        else if t == "regular" && lib.hasSuffix ".nix" p then { "${lib.removeSuffix ".nix" p}" = p; }
-        else {}
+      (lib.concatMapAttrs (
+        p: t:
+          if t == "directory"
+          then {"${p}" = p;}
+          else if t == "regular" && lib.hasSuffix ".nix" p
+          then {"${lib.removeSuffix ".nix" p}" = p;}
+          else {}
       ))
       (builtins.mapAttrs (h: p: {
         module = "${hostsDir}/${p}";
@@ -32,7 +32,10 @@
       }))
     ];
 
-    mkComputer = {module, hostName}:
+    mkComputer = {
+      module,
+      hostName,
+    }:
       lib.nixosSystem {
         modules = [
           (self.nixosModules.default {namespace = customNamespace;})

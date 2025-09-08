@@ -8,7 +8,11 @@
 libModule.mkEnableModule {
   path = ["profiles" "minimal"];
   description = "a bare-bones, minimal profile";
-  config = {namespace, configGlobal, ...}: {
+  config = {
+    namespace,
+    configGlobal,
+    ...
+  }: {
     nix = {
       # Necessary features to enable flakes
       settings.experimental-features = [

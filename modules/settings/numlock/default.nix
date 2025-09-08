@@ -1,6 +1,6 @@
 {
-  pkgs,
   libModule,
+  pkgs,
   ...
 }:
 libModule.mkEnableModule {

@@ -1,6 +1,6 @@
 {
-  pkgs,
   customNamespace,
+  pkgs,
   ...
 }: {
   imports = [
