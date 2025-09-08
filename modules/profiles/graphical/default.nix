@@ -1,5 +1,8 @@
-{libModule, ...}:
-libModule.mkEnableModule {
+{
+  libModule,
+  pkgs,
+  ...
+}: libModule.mkEnableModule {
   path = ["profiles" "graphical"];
   description = "a graphical profile. Enables `minimal` profile too";
   config = {namespace, ...}: {
@@ -18,7 +21,10 @@ libModule.mkEnableModule {
       };
     };
 
-    services.xserver.enable = true;
+    services.xserver = {
+      enable = true;
+      excludePackages = [pkgs.xterm];
+    };
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
