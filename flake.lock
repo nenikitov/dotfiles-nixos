@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "generationTrimmer": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1757609285,
+        "narHash": "sha256-sSI6rOMc+7hvP8VGSmTaejFBi8TjKEJzR2d0k738n+U=",
+        "owner": "nenikitov",
+        "repo": "nix-generation-trimmer",
+        "rev": "9b7b4a85ca3772805280b859088f53362cb19c41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nenikitov",
+        "repo": "nix-generation-trimmer",
+        "type": "github"
+      }
+    },
     "moduleUtils": {
       "inputs": {
         "nixpkgs": [
@@ -38,6 +58,7 @@
     },
     "root": {
       "inputs": {
+        "generationTrimmer": "generationTrimmer",
         "moduleUtils": "moduleUtils",
         "nixpkgs": "nixpkgs"
       }

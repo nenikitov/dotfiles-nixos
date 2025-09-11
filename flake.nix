@@ -3,8 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     moduleUtils = {
       url = "github:nenikitov/nix-module-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    generationTrimmer = {
+      url = "github:nenikitov/nix-generation-trimmer";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -38,7 +44,15 @@
     }:
       lib.nixosSystem {
         modules = [
+          # Overlays
+          {
+            nixpkgs.overlays = [
+              inputs.generationTrimmer.overlays.default
+            ];
+          }
+          # Modules
           (self.nixosModules.default {namespace = customNamespace;})
+          # Config
           module
         ];
         specialArgs = {
