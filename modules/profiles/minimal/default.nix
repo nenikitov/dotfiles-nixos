@@ -62,5 +62,6 @@ libModule.mkEnableModule {
       tree
       vim
     ];
+    programs.nix-ld.enable = true;
   };
 }

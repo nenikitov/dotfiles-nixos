@@ -44,13 +44,8 @@
     }:
       lib.nixosSystem {
         modules = [
-          # Overlays
-          {
-            nixpkgs.overlays = [
-              inputs.generationTrimmer.overlays.default
-            ];
-          }
           # Modules
+          inputs.generationTrimmer.nixosModules.default
           (self.nixosModules.default {namespace = customNamespace;})
           # Config
           module
