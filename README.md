@@ -6,7 +6,7 @@ This config is very minimal by design.
 It contains only system-level options, most necessary programs, and services only.
 
 Almost all of my configuration is done in "user-space" through home-manager.
-It can be found in [here](https://github.com/nenikitov/dotfiles), for now in the branch `nix`.
+It can be found in [here](https://github.com/nenikitov/dotfiles), for now in the branch `nix-new`.
 
 ## Templates
 
@@ -16,10 +16,12 @@ It can be found in [here](https://github.com/nenikitov/dotfiles), for now in the
 
 ### Module
 
+All modules must be defined in `modules/<PATH>/<TO>/<MODULE>/default.nix`.
+
 ```nix
-{mkModule, ...}:
-mkModule {
-  path = ["<PATH>" "<TO>" "<MODULE>"]];
+{libModule, ...}:
+libModule.mkEnableModule {
+  path = ["<PATH>" "<TO>" "<MODULE>"];
   description = "<DESCRIPTION>";
   options = {
     ### No need for `enable`
@@ -36,6 +38,8 @@ mkModule {
 ```
 
 ### Host
+
+All hosts must be defined in `hosts/<HOSTNAME>/default.nix` and have a corresponding `host/<HOSTNAME>/hardware.nix` file.
 
 ```nix
 {
