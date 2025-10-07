@@ -2,11 +2,12 @@
   libModule,
   pkgs,
   ...
-}: libModule.mkEnableModule {
+}:
+libModule.mkEnableModule {
   path = ["profiles" "graphical"];
   description = "a graphical profile. Enables `minimal` profile too";
   config = {namespace, ...}: {
-    "${namespace}" = {
+    ${namespace} = {
       profiles.minimal.enable = true;
 
       hardware = {

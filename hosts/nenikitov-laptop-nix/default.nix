@@ -1,5 +1,4 @@
 {
-  config,
   customNamespace,
   pkgs,
   ...
@@ -20,7 +19,7 @@
     options = ["rw" "uid=1000"];
   };
 
-  "${customNamespace}" = {
+  ${customNamespace} = {
     profiles.graphical.enable = true;
     programs.systemdBoot.extraEntries = {
       "grub.conf" = ''

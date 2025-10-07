@@ -1,8 +1,4 @@
-{
-  customNamespace,
-  pkgs,
-  ...
-}: {
+{customNamespace, ...}: {
   imports = [
     ./hardware.nix
   ];
@@ -13,7 +9,7 @@
 
   boot.loader.efi.canTouchEfiVariables = true;
 
-  "${customNamespace}" = {
+  ${customNamespace} = {
     profiles.graphical.enable = true;
     hardware.nvidia.enable = true;
     programs.systemdBoot.extraEntries = {

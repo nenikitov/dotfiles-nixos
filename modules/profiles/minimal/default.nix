@@ -30,7 +30,7 @@ libModule.mkEnableModule {
       nixPath = lib.mapAttrsToList (k: v: "${k}=${v.to.path}") configGlobal.nix.registry;
     };
 
-    "${namespace}" = {
+    ${namespace} = {
       settings = {
         garbageCollection.enable = true;
         locale.enable = true;
