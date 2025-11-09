@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758516671,
-        "narHash": "sha256-y8d5ifmrZy31k/71ZBUC5GFzOKE9jQZ6HhJPhJHJBTU=",
+        "lastModified": 1762720485,
+        "narHash": "sha256-AxmJKglf5ics8nziaFH659BEA/toeiMuEF4M/xCphvE=",
         "owner": "nenikitov",
         "repo": "nix-generation-trimmer",
-        "rev": "bd2c7cd94edf8de8182c779c0ab7e5df842bde37",
+        "rev": "1a469b2acf92687587d4de2c5da2e6d6a1402f08",
         "type": "github"
       },
       "original": {
