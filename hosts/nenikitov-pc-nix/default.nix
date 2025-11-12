@@ -9,6 +9,12 @@
 
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # TODO: Is there a way to not hardcode home path?
+  fileSystems."/home/nenikitov/Shared" = {
+    device = "/dev/sdc2";
+    options = ["rw" "uuid=1000"];
+  };
+
   ${customNamespace} = {
     profiles.graphical.enable = true;
     hardware.nvidia.enable = true;

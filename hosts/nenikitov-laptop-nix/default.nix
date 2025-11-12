@@ -13,9 +13,9 @@
 
   boot.loader.efi.canTouchEfiVariables = true;
 
-  fileSystems."~nenikitov/Shared" = {
+  # TODO: Is there a way to not hardcode home path?
+  fileSystems."/home/nenikitov/Shared" = {
     device = "/dev/nvme0n1p5";
-    fsType = "ntfs-3g";
     options = ["rw" "uid=1000"];
   };
 
