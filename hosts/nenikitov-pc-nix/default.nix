@@ -11,7 +11,7 @@
 
   # TODO: Is there a way to not hardcode home path?
   fileSystems."/home/nenikitov/Shared" = {
-    device = "/dev/sdc2";
+    device = "/dev/disk/by-label/MyFiles_New";
     options = ["rw" "uuid=1000"];
   };
 
