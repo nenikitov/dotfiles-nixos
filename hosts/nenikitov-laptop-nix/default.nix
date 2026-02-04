@@ -35,5 +35,12 @@
   };
 
   users.users.nenikitov.shell = pkgs.zsh;
+  users.users.nenikitov.extraGroups = ["wireshark"];
+
   programs.zsh.enable = true;
+
+  programs.wireshark = {
+    enable = true;
+    usbmon.enable = true;
+  };
 }

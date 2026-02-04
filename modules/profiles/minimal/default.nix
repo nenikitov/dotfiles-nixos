@@ -39,6 +39,7 @@ libModule.mkEnableModule {
       programs = {
         ly.enable = true;
         systemdBoot.enable = true;
+        upower.enable = true;
       };
       hardware = {
         network.enable = true;
