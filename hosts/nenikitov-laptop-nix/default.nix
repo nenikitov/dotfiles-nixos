@@ -17,6 +17,7 @@
   fileSystems."/home/nenikitov/Shared" = {
     device = "/dev/nvme0n1p5";
     options = ["rw" "uid=1000"];
+    default = "auto";
   };
 
   ${customNamespace} = {

@@ -18,6 +18,7 @@ libModule.mkEnableModule {
       settings.experimental-features = [
         "nix-command"
         "flakes"
+        "pipe-operators"
       ];
 
       # Make nix3 and legacy commands consistent with flakes

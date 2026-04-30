@@ -1,4 +1,4 @@
-{customNamespace, ...}: {
+{customNamespace, pkgs, ...}: {
   imports = [
     ./hardware.nix
   ];
@@ -12,8 +12,11 @@
   # TODO: Is there a way to not hardcode home path?
   fileSystems."/home/nenikitov/Shared" = {
     device = "/dev/disk/by-label/MyFiles_New";
-    options = ["rw" "uuid=1000"];
+    options = ["rw" "uid=1000"];
+    fsType = "auto";
   };
+
+  environment.systemPackages = with pkgs; [ cowsay hello ];
 
   ${customNamespace} = {
     profiles.graphical.enable = true;
