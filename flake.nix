@@ -2,7 +2,7 @@
   description = "nenikitov's main system configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     treefmt = {
       url = "github:numtide/treefmt-nix";

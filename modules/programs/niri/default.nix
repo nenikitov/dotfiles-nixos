@@ -4,5 +4,9 @@ libModule.mkEnableModule {
   description = "niri Wayland compositor";
   config = {
     programs.niri.enable = true;
+    programs.hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
   };
 }
