@@ -17,7 +17,7 @@
   fileSystems."/home/nenikitov/Shared" = {
     device = "/dev/nvme0n1p5";
     options = ["rw" "uid=1000"];
-    default = "auto";
+    fsType = "auto";
   };
 
   ${customNamespace} = {
@@ -35,13 +35,6 @@
     layout = "us";
   };
 
-  users.users.nenikitov.shell = pkgs.zsh;
-  users.users.nenikitov.extraGroups = ["wireshark"];
-
   programs.zsh.enable = true;
-
-  programs.wireshark = {
-    enable = true;
-    usbmon.enable = true;
-  };
+  users.users.nenikitov.shell = pkgs.zsh;
 }
