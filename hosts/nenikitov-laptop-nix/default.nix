@@ -15,9 +15,9 @@
 
   # TODO: Is there a way to not hardcode home path?
   fileSystems."/home/nenikitov/Shared" = {
-    device = "/dev/nvme0n1p5";
+    device = "/dev/disk/by-label/SharedFiles";
     options = ["rw" "uid=1000"];
-    fsType = "auto";
+    fsType = "ntfs-3g";
   };
 
   ${customNamespace} = {
